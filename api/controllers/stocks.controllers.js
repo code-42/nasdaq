@@ -125,3 +125,71 @@ module.exports.stocksGetAll = function(req, res){
 		console.log("found offset " + offset + " : count " + count + " stocks");
 	});
 };
+
+var _saveQuery = function(req, res){
+// module.exports.saveQuery = function(req, res, nasdaq){
+
+	var queryData = new saveQuery({
+    symbol : req.body.symbol,
+    Name : req.body.Name,
+    LastSale : parseInt(req.body.LastTradePriceOnly, 10),
+    MarketCap : parseInt(req.body.MarketCapitalization, 10),
+    TimeStamp : req.body.created
+	});
+  console.log("1.saveQuery.?");
+	queryData.save(function(err){
+		if(err){
+			res
+				.status(500)
+				.json(err);
+		} else {
+			res
+        .status(201)
+        .json(queryData);
+		}
+	});
+
+};
+
+module.exports.queryAddOne = function(req, res){
+  var symbol = req.params.symbol;
+  console.log("1.queryAddOne.req.params.symbol.symbol", symbol);
+
+  Nasdaq
+    // .findById(id)
+    .findOne({'Symbol': symbol})
+    .select('symbol')
+    .exec(function(err, doc) {
+      console.log("doc == " + doc);
+      var response = {
+        status : 200,
+        message : []
+      };
+      if (err) {
+        console.log("Error finding symbol");
+        response.status = 500;
+        response.message = err;
+      } else if(!doc) {
+        console.log("symbol not found in database");
+        response.status = 404;
+        response.message = {
+          "message" : "symbol not found "
+        };
+      }
+      if (doc){
+        _saveQuery(req, res, doc);
+      } else {
+	      res
+	        .status(response.status)
+	        .json(response.message);
+      }
+    });
+};
+
+
+
+// symbol : req.body.symbol,
+// Name : req.body.Name,
+// LastSale : parseInt(req.body.LastTradePriceOnly, 10),
+// MarketCap : parseInt(req.body.MarketCapitalization, 10),
+// TimeStamp : req.body.created

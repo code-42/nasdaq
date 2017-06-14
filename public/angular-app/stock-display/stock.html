@@ -6,13 +6,14 @@
   <div ng-show="vm.stockForm.name.$dirty && vm.stockForm.name.$invalid && vm.isSubmitted">
     <p>Stock symbol should be more than 1 character long</p>
     <p>dynamic ng-show stuff</p>
-    <p>Stock Name: {{ vm.stock.Name }}</p>
+    <p>Company Name: {{ vm.stock.Name }}</p>
     <p>Stock Symbol: {{ vm.stock.Symbol }}</p>
     <p>Last Sale: {{ vm.stock.LastSale }}</p>
   </div>
 </form>
 
-<h3>Stock Name: {{ vm.stock.Name }}</h3>
-<p>Stock Symbol: {{ vm.stock.Symbol }}</p>
-<p>Last Sale: {{ vm.stock.LastSale}}</p>
-<p>Market Cap: {{ vm.stock.MarketCap}}</p>
+<h3>Company Name: {{ vm.stock.query.results.quote.Name }}</h3>
+<p>Stock Symbol: {{ vm.stock.query.results.quote.symbol }}</p>
+<p>Last Sale: {{ vm.stock.query.results.quote.LastTradePriceOnly}}</p>
+<p>Market Cap: {{ vm.stock.query.results.quote.MarketCapitalization}}</p>
+<p>Time Stamp: {{ vm.stock.query.created }}</p>
