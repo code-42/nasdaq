@@ -14,6 +14,10 @@ function config($locationProvider, $routeProvider){
       templateUrl: 'angular-app/stock-display/stock.html',
       controller: StockController,
       controllerAs: 'vm'
+    }).when('/querys', {
+      templateUrl: 'angular-app/stock-display/stock.html',
+      controller: QueryController,
+      controllerAs: 'vm'
     }).otherwise({
       redirectTo: '/'
     });

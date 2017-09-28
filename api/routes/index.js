@@ -1,31 +1,26 @@
 var express = require('express');
 var router = express.Router();
 
-var ctrlStocks = require('../controllers/stocks.controllers.js');
+var ctrlStocks = require('../controllers/stock.controllers.js');
+var ctrlQuery = require('../controllers/querys.controllers.js');
 
 router
   .route('/')
-<<<<<<< HEAD
-  .get(ctrlStocks.stocksGetAll)
-  .post(ctrlStocks.queryAddOne);
-=======
   .get(ctrlStocks.stocksGetAll);
   // .post(ctrlStocks.queryAddOne);
->>>>>>> 67e62d6ff912fb14daa309984733dbaa033b2aa9
-  // .get(ctrlStocks.getStockSymbol);
 
-  router
-    .route('/stock')
-    .get(ctrlStocks.stocksGetAll);
-    // .post(ctrlStocks.queryAddOne);
-<<<<<<< HEAD
-=======
-    // .post(ctrlStocks.queryAddOne);
->>>>>>> 67e62d6ff912fb14daa309984733dbaa033b2aa9
+router
+  .route('/stock')
+  // .get(ctrlStocks.stocksGetAll)
+  .post(ctrlQuery.query);
+  // .post(ctrlStocks.queryAddOne);
 
 router
   .route('/stock/:stockId')
   .get(ctrlStocks.stocksGetOne);
 
+router
+  .route('/#/')
+  .post(ctrlQuery.query);
 
 module.exports = router;
