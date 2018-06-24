@@ -18,13 +18,15 @@
   },
   "homepage": "https://github.com/code-42/nasdaq#readme",
   "dependencies": {
-    "angular": "^1.6.4",
-    "angular-route": "^1.6.4",
-    "body-parser": "^1.17.2",
+    "angular": "^1.7.2",
+    "angular-jwt": "^0.1.10",
+    "angular-route": "^1.7.2",
+    "body-parser": "^1.18.3",
     "csvtojson": "^1.1.6",
     "express": "^4.15.3",
-    "mongodb": "^2.2.28",
-    "mongoose": "^4.10.5"
+    "jsonwebtoken": "^8.3.0",
+    "mongodb": "^2.2.35",
+    "mongoose": "^4.13.14"
   },
   "devDependencies": {
     "mocha": "^3.4.2"
